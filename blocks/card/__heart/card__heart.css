@@ -1,0 +1,15 @@
+.card__heart {
+  width: 22px;
+  height: 19px;
+  background-image: url(../../../images/mesto-russia-heart.svg);
+  background-position: center;
+  background-color: #fff;
+  border: none;
+  padding: 0;
+  transition: opacity .3s linear;
+}
+
+.card__heart:hover {
+  cursor: pointer;
+  opacity: .5;
+}
