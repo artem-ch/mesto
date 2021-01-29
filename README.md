@@ -12,4 +12,4 @@
 4. Реализован скрипт для открытия, закрытия и редактирования информации о пользователе
 
 ## Ссылка проект на GitHub Pages:
-https://art-wd.github.io/mesto/
+https://art-wd.github.io/mesto/index.html
