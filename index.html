@@ -91,15 +91,17 @@
   </footer>
 
   <section class="popup">
-    <form class="popup__form">
-      <fieldset class="popup__container section">
+    <div class="popup__container">
+      <form class="popup__form section">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="popup__input section" type="text" name="name" placeholder="Имя" required>
-        <input class="popup__input section" type="text" name="about" placeholder="О себе" required>
-        <button class="popup__submit-button" type="submit">Сохранить</button>
-      </fieldset>
-      <button class="popup__close-button hover" type="button"></button>
-    </form>
+        <fieldset class="popup__fieldset">
+          <input class="popup__input" type="text" name="name" placeholder="Имя" required>
+          <input class="popup__input" type="text" name="about" placeholder="О себе" required>
+          <button class="popup__submit-button" type="submit">Сохранить</button>
+        </fieldset>
+        <button class="popup__close-button hover" type="button"></button>
+      </form>
+    </div>
   </section>
 
   <script src="./scripts/main.js"></script>

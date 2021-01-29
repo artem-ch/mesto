@@ -1,20 +1,6 @@
 .popup__container {
   display: flex;
-  flex-direction: column;
-  width: 430px;
-  height: 330px;
-  color: #000;
-  background-color: #fff;
-  border-radius: 10px;
-  border: none;
-  margin: 0;
-  padding: 30px 36px 37px;
-}
-
-@media (max-width: 545px) {
-  .popup__container {
-    width: 282px;
-    height: 322px;
-    padding: 25px 22px;
-  }
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
