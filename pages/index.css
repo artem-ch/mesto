@@ -1,9 +1,8 @@
 /* preset */
 @import url(../vendor/normalize.css);
 @import url(../vendor/fonts/inter.css);
-/* page, section, text-content, hover */
+/* page, text-content, hover */
 @import url(../blocks/page/page.css);
-@import url(../blocks/section/section.css);
 @import url(../blocks/text-content/text-content.css);
 @import url(../blocks/hover/hover.css);
 /* header */
@@ -22,7 +21,6 @@
 @import url(../blocks/cards/cards.css);
 @import url(../blocks/cards/__list/cards__list.css);
 /* card */
-@import url(../blocks/card/card.css);
 @import url(../blocks/card/__figure/card__figure.css);
 @import url(../blocks/card/__image/card__image.css);
 @import url(../blocks/card/__caption/card__caption.css);
@@ -37,7 +35,6 @@
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__form/popup__form.css);
-@import url(../blocks/popup/__fieldset/popup__fieldset.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__input/popup__input.css);
 @import url(../blocks/popup/__submit-button/popup__submit-button.css);

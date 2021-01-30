@@ -16,7 +16,6 @@
   .popup__close-button {
     width: 26px;
     height: 26px;
-    top: -40px;
     right: 0px;
     background-image: url(../../../images/mesto-russia-popup-close-small.svg);
   }
