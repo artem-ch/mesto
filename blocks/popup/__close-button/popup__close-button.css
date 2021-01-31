@@ -4,9 +4,8 @@
   right: -40px;
   width: 40px;
   height: 40px;
-  background-image: url(../../../images/mesto-russia-popup-close.svg);
-  background-color: transparent;
-  background-position: center;
+  background: url(../../../images/mesto-russia-plus.svg) center/contain no-repeat;
+  transform: rotate(45deg);
   border: none;
   padding: 0;
 }
@@ -16,7 +15,7 @@
   .popup__close-button {
     width: 26px;
     height: 26px;
-    right: 0px;
-    background-image: url(../../../images/mesto-russia-popup-close-small.svg);
+    top: -45px;
+    right: 5px;
   }
 }
