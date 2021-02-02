@@ -1,10 +1,7 @@
 .header__logo {
   width: 142px;
   height: 33px;
-  background-image: url(../../../images/mesto-russia-logo-white.svg);
-  background-repeat: no-repeat;
-  background-size: contain;
-  margin: 0 0 41px;
+  background: url(../../../images/mesto-russia-logo-white.svg) center/contain no-repeat;
 }
 
 @media (max-width: 425px) {
