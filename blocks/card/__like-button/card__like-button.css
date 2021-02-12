@@ -13,7 +13,7 @@
 }
 
 .card__like-button:active {
-  background-image: url(../../../../images/mesto-russia-heart-active.svg);
+  background: url(../../../images/mesto-russia-heart-active.svg) center/contain no-repeat;
 }
 
 .card__like-button:focus {
