@@ -71,7 +71,7 @@ function getItem(item) {
   const removeButton = newCard.querySelector('.card__delete-button');
   removeButton.addEventListener('click', deleteCard);
 
-  cardImage.addEventListener('click', openFullImage);
+  cardImage.addEventListener('click', () => openFullImage(item.link, item.name));
 
   return newCard;
 }
@@ -112,16 +112,13 @@ function likeCard(evt) {
 }
 
 function deleteCard(evt) {
-  const targetElement= evt.target;
-  const targetCard = targetElement.closest('.card');
-
-  targetCard.remove();
+  evt.target.closest('.card').remove();
 }
 
-function openFullImage(evt) {
-  imageImg.src = evt.target.src;
-  imageImg.alt = evt.target.alt;
-  imageCaption.textContent = evt.target.alt;
+function openFullImage(link, name) {
+  imageImg.src = link;
+  imageImg.alt = name;
+  imageCaption.textContent = name;
 
   openPopup(imagePopup);
 }
