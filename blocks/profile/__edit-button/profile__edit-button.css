@@ -5,6 +5,12 @@
   flex-shrink: 0;
   background: url(../../../images/mesto-russia-pen.svg) center no-repeat;
   border: 1px solid #fff;
+  transition: opacity .2s linear;
+}
+
+.profile__edit-button:hover {
+  cursor: pointer;
+  opacity: .6;
 }
 
 @media (max-width: 425px) {

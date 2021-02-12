@@ -17,71 +17,16 @@
       <img class="profile__avatar" src="./images/mesto-russia-avatar.jpg" alt="Аватар">
       <div class="profile__info">
         <div class="profile__name-about">
-          <h1 class="profile__name text-content">Жак-Ив Кусто</h1>
-          <p class="profile__about text-content">Исследователь океана</p>
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <p class="profile__about">Исследователь океана</p>
         </div>
-        <button class="profile__edit-button hover" type="button" aria-label="profile-edit-button"></button>
+        <button class="profile__edit-button" type="button" aria-label="Редактировать профиль"></button>
       </div>
-      <button class="profile__add-button hover" type="button" aria-label="profile-add-button"></button>
+      <button class="profile__add-button" type="button" aria-label="Добавить карточку"></button>
     </section>
 
-    <section class="cards">
-      <ul class="cards__list">
-        <li class="card">
-          <figure class="card__figure">
-            <img class="card__image" src="./images/mesto-russia-karachayevsk.jpg" alt="Карачаевск">
-            <figcaption class="card__caption">
-              <h2 class="card__title text-content">Карачаевск</h2>
-              <button class="card__heart" type="button" aria-label="card-like-button"></button>
-            </figcaption>
-          </figure>
-         </li>
-         <li class="card">
-          <figure class="card__figure">
-            <img class="card__image" src="./images/mesto-russia-elbrus.jpg" alt="Эльбрус">
-            <figcaption class="card__caption">
-              <h2 class="card__title text-content">Гора Эльбрус</h2>
-              <button class="card__heart" type="button" aria-label="card-like-button"></button>
-            </figcaption>
-          </figure>
-         </li>
-         <li class="card">
-          <figure class="card__figure">
-            <img class="card__image" src="./images/mesto-russia-dombay.jpg" alt="Домбай">
-            <figcaption class="card__caption">
-              <h2 class="card__title text-content">Домбай</h2>
-              <button class="card__heart" type="button" aria-label="card-like-button"></button>
-            </figcaption>
-          </figure>
-         </li>
-         <li class="card">
-          <figure class="card__figure">
-            <img class="card__image" src="./images/mesto-russia-elbrus.jpg" alt="Эльбрус">
-            <figcaption class="card__caption">
-              <h2 class="card__title text-content">Гора Эльбрус</h2>
-              <button class="card__heart" type="button" aria-label="card-like-button"></button>
-            </figcaption>
-          </figure>
-         </li>
-         <li class="card">
-          <figure class="card__figure">
-            <img class="card__image" src="./images/mesto-russia-dombay.jpg" alt="Домбай">
-            <figcaption class="card__caption">
-              <h2 class="card__title text-content">Домбай</h2>
-              <button class="card__heart" type="button" aria-label="card-like-button"></button>
-            </figcaption>
-          </figure>
-         </li>
-         <li class="card">
-          <figure class="card__figure">
-            <img class="card__image" src="./images/mesto-russia-karachayevsk.jpg" alt="Карачаево-Черкессия">
-            <figcaption class="card__caption">
-              <h2 class="card__title text-content">Карачаево-Черкессия</h2>
-              <button class="card__heart" type="button" aria-label="card-like-button"></button>
-            </figcaption>
-          </figure>
-         </li>
-      </ul>
+    <section class="cards" aria-label="Карточки">
+      <ul class="cards__list"></ul>
     </section>
 
   </main>
@@ -90,18 +35,53 @@
     <p class="footer__copyright">&copy; 2021 Mesto Russia</p>
   </footer>
 
-  <div class="popup">
+  <div class="popup popup-profile-edit">
     <div class="popup__container">
-      <form class="popup__form" name="popup-form">
+      <form class="popup__form" name="popup-edit-form">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="popup__input popup__input_content_name" type="text" name="name" placeholder="Имя" required>
-        <input class="popup__input popup__input_content_about" type="text" name="about" placeholder="О себе" required>
+        <input class="popup__input popup__input_edit_name" type="text" name="popup-edit-name" placeholder="Имя" aria-label="Имя" required>
+        <input class="popup__input popup__input_edit_about" type="text" name="popup-edit-about" placeholder="О себе" aria-label="О себе" required>
         <button class="popup__submit-button" type="submit">Сохранить</button>
       </form>
-      <button class="popup__close-button hover" type="button"></button>
+      <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
     </div>
   </div>
 
-  <script src="./scripts/main.js"></script>
+  <div class="popup popup-card-add">
+    <div class="popup__container">
+      <form class="popup__form" name="popup-add-form">
+        <h2 class="popup__title">Новое место</h2>
+        <input class="popup__input popup__input_add_title" type="text" name="popup-add-title" placeholder="Название" aria-label="Название" required>
+        <input class="popup__input popup__input_add_link" type="text" name="popup-add-link" placeholder="Ссылка на картинку" aria-label="Ссылка на картинку" required>
+        <button class="popup__submit-button" type="submit">Сохранить</button>
+      </form>
+      <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
+    </div>
+  </div>
+
+  <div class="popup popup-full-image">
+    <div class="popup__container popup__container_for_image">
+      <figure class="popup__figure">
+        <img class="popup__image" src="" alt="">
+        <figcaption class="popup__caption"></figcaption>
+      </figure>
+      <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
+    </div>
+  </div>
+
+  <template class="card-template">
+    <li class="card">
+      <button class="card__delete-button" aria-label="Удалить карточку"></button>
+      <figure class="card__figure">
+        <img class="card__image" src="" alt="">
+        <figcaption class="card__caption">
+          <h2 class="card__title"></h2>
+          <button class="card__like-button" type="button" aria-label="Нравится"></button>
+        </figcaption>
+      </figure>
+     </li>
+  </template>
+
+  <script src="./scripts/index.js"></script>
 </body>
 </html>
