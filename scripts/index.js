@@ -66,12 +66,12 @@ function getItem(item) {
   cardTitle.textContent = item.name;
 
   const likeButton = newCard.querySelector('.card__like-button');
-  likeButton.addEventListener('click', cardLikeHandler);
+  likeButton.addEventListener('click', likeCard);
 
   const removeButton = newCard.querySelector('.card__delete-button');
-  removeButton.addEventListener('click', cardDeleteHandler);
+  removeButton.addEventListener('click', deleteCard);
 
-  cardImage.addEventListener('click', fullImageHandler);
+  cardImage.addEventListener('click', openFullImage);
 
   return newCard;
 }
@@ -84,7 +84,7 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
-function profileEditHandler(evt) {
+function editProfile(evt) {
   evt.preventDefault();
 
   profileName.textContent = editNameInput.value;
@@ -93,7 +93,7 @@ function profileEditHandler(evt) {
   closePopup(editPopup);
 }
 
-function cardAddHandler(evt) {
+function addCard(evt) {
   evt.preventDefault();
 
   const cardsListItem = getItem({
@@ -107,18 +107,18 @@ function cardAddHandler(evt) {
   addFormElement.reset();
 }
 
-function cardLikeHandler(evt) {
+function likeCard(evt) {
   evt.target.classList.toggle('card__like-button_active');
 }
 
-function cardDeleteHandler(evt) {
+function deleteCard(evt) {
   const targetElement= evt.target;
   const targetCard = targetElement.closest('.card');
 
   targetCard.remove();
 }
 
-function fullImageHandler(evt) {
+function openFullImage(evt) {
   imageImg.src = evt.target.src;
   imageImg.alt = evt.target.alt;
   imageCaption.textContent = evt.target.alt;
@@ -132,14 +132,14 @@ editButton.addEventListener('click', () => {
   editJobInput.value = profileAbout.textContent;
 });
 editCloseButton.addEventListener('click', () => closePopup(editPopup));
-editFormElement.addEventListener('submit', profileEditHandler);
+editFormElement.addEventListener('submit', editProfile);
 
 addButton.addEventListener('click', () => openPopup(addPopup));
 addCloseButton.addEventListener('click', () => {
   closePopup(addPopup);
   addFormElement.reset();
 });
-addFormElement.addEventListener('submit', cardAddHandler);
+addFormElement.addEventListener('submit', addCard);
 
 imageCloseButton.addEventListener('click', () => closePopup(imagePopup));
 
