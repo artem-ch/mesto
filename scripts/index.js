@@ -31,6 +31,8 @@ const profileAbout = document.querySelector('.profile__about');
 const cardTemplate = document.querySelector('.card-template');
 const cardsList = document.querySelector('.cards__list');
 
+const popupList = document.querySelectorAll('.popup');
+
 const editButton = document.querySelector('.profile__edit-button');
 const editPopup = document.querySelector('.popup-profile-edit');
 const editCloseButton = editPopup.querySelector('.popup__close-button');
@@ -81,7 +83,13 @@ function openPopup(popup) {
 }
 
 function closePopup(popup) {
+  const formElement = popup.querySelector('.popup__form');
+
   popup.classList.remove('popup_opened');
+
+  if (formElement) {
+    formElement.reset();
+  }
 }
 
 function editProfile(evt) {
@@ -104,7 +112,6 @@ function addCard(evt) {
   cardsList.prepend(cardsListItem);
 
   closePopup(addPopup);
-  addFormElement.reset();
 }
 
 function likeCard(evt) {
@@ -132,12 +139,23 @@ editCloseButton.addEventListener('click', () => closePopup(editPopup));
 editFormElement.addEventListener('submit', editProfile);
 
 addButton.addEventListener('click', () => openPopup(addPopup));
-addCloseButton.addEventListener('click', () => {
-  closePopup(addPopup);
-  addFormElement.reset();
-});
+addCloseButton.addEventListener('click', () => closePopup(addPopup));
 addFormElement.addEventListener('submit', addCard);
 
 imageCloseButton.addEventListener('click', () => closePopup(imagePopup));
+
+popupList.forEach(item => {
+  item.addEventListener('click', evt => {
+    if (evt.target === evt.currentTarget) {
+      closePopup(item);
+    }
+  });
+
+  document.addEventListener('keydown', evt => {
+    if (evt.key === 'Escape') {
+      closePopup(item);
+    }
+  });
+});
 
 renderCard();
