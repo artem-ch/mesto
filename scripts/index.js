@@ -91,37 +91,21 @@ function closeByEscape(evt) {
   if (evt.key === 'Escape') {
     const openedPopup = document.querySelector('.popup_opened')
     closePopup(openedPopup);
-    resetForm(openedPopup);
   }
 }
 
 function resetForm(popup) {
   const formElement = popup.querySelector('.popup__form');
-
-  if (formElement) {
-    formElement.reset();
-  }
+  formElement.reset();
 }
 
 function resetErrors(popup) {
   const formElement = popup.querySelector('.popup__form');
+  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+  const buttonElement = formElement.querySelector('.popup__submit-button');
 
-  if (formElement) {
-    const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-
-    inputList.forEach(inputElement => hideInputError(formElement, inputElement, {inputErrorClass: 'popup__input_type_error', errorClass: 'popup__error_visible'}));
-  }
-}
-
-function resetButton(popup) {
-  const formElement = popup.querySelector('.popup__form');
-
-  if (formElement) {
-    const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-    const buttonElement = formElement.querySelector('.popup__submit-button');
-
-    toggleButtonState(inputList, buttonElement, {inactiveButtonClass: 'popup__submit-button_disabled'});
-  }
+  inputList.forEach(inputElement => hideInputError(formElement, inputElement, {inputErrorClass: 'popup__input_type_error', errorClass: 'popup__error_visible'}));
+  toggleButtonState(inputList, buttonElement, {inactiveButtonClass: 'popup__submit-button_disabled'});
 }
 
 function editProfile(evt) {
@@ -131,7 +115,6 @@ function editProfile(evt) {
   profileAbout.textContent = editJobInput.value;
 
   closePopup(editPopup);
-  resetForm(editPopup);
 }
 
 function addCard(evt) {
@@ -170,16 +153,15 @@ editJobInput.value = profileAbout.textContent;
 editButton.addEventListener('click', () => {
   editNameInput.value = profileName.textContent;
   editJobInput.value = profileAbout.textContent;
-  openPopup(editPopup);
   resetErrors(editPopup);
-  resetButton(editPopup);
+  openPopup(editPopup);
 });
 editFormElement.addEventListener('submit', editProfile);
 
 addButton.addEventListener('click', () => {
-  openPopup(addPopup);
+  resetForm(addPopup);
   resetErrors(addPopup);
-  resetButton(addPopup);
+  openPopup(addPopup);
 });
 addFormElement.addEventListener('submit', addCard);
 
@@ -187,12 +169,10 @@ popupList.forEach(item => {
   item.addEventListener('click', evt => {
     if (evt.target === evt.currentTarget) {
       closePopup(item);
-      resetForm(item);
     }
 
     if (evt.target.classList.contains('popup__close-button')) {
       closePopup(item);
-      resetForm(item);
     }
   });
 
