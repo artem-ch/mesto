@@ -1,8 +1,8 @@
 export default class Card {
-  constructor(data, cardSelector) {
+  constructor(link, name, cardSelector) {
+    this._link = link;
+    this._name = name;
     this._cardSelector = cardSelector;
-    this._name = data.name;
-    this._link = data.link;
   }
 
   _getTemplate() {
@@ -23,21 +23,12 @@ export default class Card {
     this._element.querySelector('.card__delete-button').closest('.card').remove();
   }
 
-  // _handleFullImage() {
-  //   const popup = document.querySelector('.popup-full-image');
-
-  //   popup.querySelector('.popup__image').src = this._link;
-  //   popup.querySelector('.popup__image').alt = this._name;
-  //   popup.querySelector('.popup__caption').textContent = this._name;
-  //   popup.classList.add('popup_opened');
-  // }
-
   _setEventListeners() {
     this._element.querySelector('.card__like-button').addEventListener('click', () => this._handleLikeCard());
     this._element.querySelector('.card__delete-button').addEventListener('click', () => this._handleDeleteCard());
-    // this._element.querySelector('.card__image').addEventListener('click', () => this._handleFullImage());
   }
 
+  // public
   generateCard() {
     this._element = this._getTemplate();
     this._setEventListeners();
@@ -48,5 +39,4 @@ export default class Card {
 
     return this._element;
   }
-
 }
