@@ -15,7 +15,3 @@
 .card__like-button:active {
   background: url(../../../images/mesto-russia-heart-active.svg) center/contain no-repeat;
 }
-
-.card__like-button:focus {
-  outline: none;
-}

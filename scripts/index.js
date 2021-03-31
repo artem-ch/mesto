@@ -22,6 +22,10 @@ const addFormElement = addPopup.querySelector('.popup__form');
 const addTitleInput = addFormElement.querySelector('.popup__input_add_title');
 const addLinkInput = addFormElement.querySelector('.popup__input_add_link');
 
+const imagePopup = document.querySelector('.popup-full-image');
+const imageImg = imagePopup.querySelector('.popup__image');
+const imageCaption = imagePopup.querySelector('.popup__caption');
+
 // function expressions and event listeners
 // opening
 const openPopup = (popup) => {
@@ -30,10 +34,6 @@ const openPopup = (popup) => {
 };
 
 const openFullImage = (link, name) => {
-  const imagePopup = document.querySelector('.popup-full-image');
-  const imageImg = imagePopup.querySelector('.popup__image');
-  const imageCaption = imagePopup.querySelector('.popup__caption');
-
   imageImg.src = link;
   imageImg.alt = name;
   imageCaption.textContent = name;

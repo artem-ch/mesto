@@ -14,7 +14,3 @@
   cursor: pointer;
   opacity: .6;
 }
-
-.card__delete-button:focus {
-  outline: none;
-}
