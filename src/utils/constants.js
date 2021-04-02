@@ -1,27 +1,34 @@
+import arkhyz from '../images/mesto-russia-arkhyz.jpg';
+import chelyabinsk from '../images/mesto-russia-chelyabinsk-oblast.jpg';
+import ivanovo from '../images/mesto-russia-ivanovo.jpg';
+import kamchatka from '../images/mesto-russia-kamchatka.jpg';
+import kholmogorsky from '../images/mesto-russia-kholmogorsky-rayon.jpg';
+import baikal from '../images/mesto-russia-baikal.jpg';
+
 export const initialCards = [
   {
     name: 'Архыз',
-    link: './images/mesto-russia-arkhyz.jpg'
+    link: arkhyz
   },
   {
     name: 'Челябинская область',
-    link: './images/mesto-russia-chelyabinsk-oblast.jpg'
+    link: chelyabinsk
   },
   {
     name: 'Иваново',
-    link: './images/mesto-russia-ivanovo.jpg'
+    link: ivanovo
   },
   {
     name: 'Камчатка',
-    link: './images/mesto-russia-kamchatka.jpg'
+    link: kamchatka
   },
   {
     name: 'Холмогорский район',
-    link: './images/mesto-russia-kholmogorsky-rayon.jpg'
+    link: kholmogorsky
   },
   {
     name: 'Байкал',
-    link: './images/mesto-russia-baikal.jpg'
+    link: baikal
   }
 ];
 

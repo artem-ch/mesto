@@ -3,7 +3,7 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import {
   cardSelector,
   popupWithImageSelector,
-} from '../utils/constants.js';
+} from './constants.js';
 
 export const createCard = ({ name, link }) => {
   const card = new Card({
