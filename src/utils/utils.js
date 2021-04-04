@@ -5,12 +5,13 @@ import {
   popupWithImageSelector,
 } from './constants.js';
 
+const popupWithImage = new PopupWithImage(popupWithImageSelector);
+
 export const createCard = ({ name, link }) => {
   const card = new Card({
     name,
     link,
     handleCardClick: () => {
-      const popupWithImage = new PopupWithImage(popupWithImageSelector);
       popupWithImage.open(name, link);
     }
   }, cardSelector);

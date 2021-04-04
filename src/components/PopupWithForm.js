@@ -8,6 +8,7 @@ export default class PopupWithForm extends Popup {
       submitter(this._getInputValues());
     };
     this._form = this._popup.querySelector('.popup__form');
+    this._inputList = Array.from(this._form.querySelectorAll('.popup__input'));
   }
 
   close() {
@@ -16,8 +17,7 @@ export default class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    const inputs = Array.from(this._form.querySelectorAll('.popup__input'));
-    const inputValues = inputs.reduce((prevVal, item) => {
+    const inputValues = this._inputList.reduce((prevVal, item) => {
       prevVal[item.name] = item.value;
       return prevVal;
     }, {});
