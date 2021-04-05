@@ -1,8 +1,0 @@
-.card__image {
-  height: 282px;
-  object-fit: cover;
-}
-
-.card__image:hover {
-  cursor: pointer;
-}
