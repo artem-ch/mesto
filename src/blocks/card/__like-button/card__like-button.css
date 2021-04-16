@@ -4,6 +4,7 @@
   background: url(../../../images/mesto-russia-heart.svg) center/contain no-repeat;
   border: none;
   padding: 0;
+  margin: 0 0 2.5px;
   transition: opacity .2s linear;
 }
 
