@@ -6,9 +6,7 @@ export default class Api {
   }
 
   _handleResponse(res) {
-    res.ok
-    ? res.json()
-    : Promise.reject(`Ошибка: ${res.status}`);
+    return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
   }
 
   getProfileInfo() {
@@ -18,6 +16,6 @@ export default class Api {
         authorization: this._token
       }
     })
-      .then(_handleResponse);
+      .then(this._handleResponse);
   }
 }
