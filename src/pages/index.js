@@ -12,12 +12,12 @@ import {
   profileAvatarSelector,
   containerSelector,
   settings,
-  editPopupSelector,
-  addPopupSelector,
+  profileEditPopupSelector,
+  cardAddPopupSelector,
   nameInput,
   aboutInput,
-  editButton,
-  addButton
+  profileEditButton,
+  cardAddButton
 } from '../utils/constants.js';
 
 import { createCard } from '../utils/utils.js';
@@ -30,8 +30,8 @@ const cardList = new Section({
   }
 }, containerSelector);
 
-// const editValidator = new FormValidator(settings, editPopupSelector);
-// const addValidator = new FormValidator(settings, addPopupSelector);
+const profileEditValidator = new FormValidator(settings, profileEditPopupSelector);
+const cardAddValidator = new FormValidator(settings, cardAddPopupSelector);
 
 const api = new Api({
   address: 'https://mesto.nomoreparties.co/v1',
@@ -56,38 +56,49 @@ api.getCards()
     console.log('Ошибка при получении карточек.', err);
   });
 
+const profileEditPopup = new PopupWithForm({
+  submitter: (inputValues) => {
+    api.editProfileInfo(inputValues)
+      .then(userData => {
+        userInfo.setUserInfo(userData);
+        profileEditPopup.close();
+      })
+      .catch(err => {
+        console.log('Ошибка при изменении данных пользователя.', err);
+      });
+  }
+}, profileEditPopupSelector);
+
+profileEditButton.addEventListener('click', () => {
+  api.getProfileInfo()
+    .then(userData => {
+      nameInput.value = userData.name;
+      aboutInput.value = userData.about;
+
+      profileEditValidator.resetErrors();
+      profileEditPopup.open();
+    })
+    .catch(err => {
+      console.log('Ошибка при получении данных пользователя.', err);
+    });
+});
+
+const cardAddPopup = new PopupWithForm({
+  submitter: (inputValues) => {
+    api.addCard(inputValues)
+      .then(cardData => {
+        const cardElement = createCard(cardData);
+        cardList.prependItem(cardElement);
+        cardAddPopup.close();
+      });
+  }
+}, cardAddPopupSelector);
+
+cardAddButton.addEventListener('click', () => {
+  cardAddValidator.resetErrors();
+  cardAddPopup.open();
+});
 
 
-// const editPopup = new PopupWithForm({
-//   submitter: ({ name, about }) => {
-//     userInfo.setUserInfo({ name, about })
-
-//     editPopup.close();
-//   }
-// }, editPopupSelector);
-
-// editButton.addEventListener('click', () => {
-//   nameInput.value = userInfo.getUserInfo().name;
-//   aboutInput.value = userInfo.getUserInfo().about;
-
-//   editValidator.resetErrors();
-//   editPopup.open();
-// });
-
-// const addPopup = new PopupWithForm({
-//   submitter: ({ name, link }) => {
-//     const cardElement = createCard({ name, link });
-//     cardList.prependItem(cardElement);
-//     addPopup.close();
-//   }
-// }, addPopupSelector);
-
-// addButton.addEventListener('click', () => {
-//   addValidator.resetErrors();
-//   addPopup.open();
-// });
-
-
-// cardList.renderItems();
-// editValidator.enableValidation();
-// addValidator.enableValidation();
+profileEditValidator.enableValidation();
+cardAddValidator.enableValidation();

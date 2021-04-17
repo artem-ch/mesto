@@ -27,4 +27,34 @@ export default class Api {
     })
       .then(this._handleResponse);
   }
+
+  editProfileInfo(data) {
+    return fetch(`${this._address}/${this._cohortId}/users/me`, {
+      method: 'PATCH',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: data.name,
+        about: data.about
+      })
+    })
+      .then(this._handleResponse);
+  }
+
+  addCard(data) {
+    return fetch(`${this._address}/${this._cohortId}/cards`, {
+      method: 'POST',
+      headers: {
+        authorization: this._token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: data.name,
+        link: data.link
+      })
+    })
+      .then(this._handleResponse);
+  }
 }
