@@ -1,8 +1,12 @@
 export default class Card {
-  constructor({ handleCardClick }, cardData, cardSelector) {
+  constructor({ handleCardClick, handleDeleteButton, handleLikeCard }, cardData, userId, cardSelector) {
     this._handleCardClick = handleCardClick;
+    this._handleDeleteButton = handleDeleteButton;
+    this._handleLikeCard = handleLikeCard;
     this._name = cardData.name;
     this._link = cardData.link;
+    this._ownerId = cardData.owner._id;
+    this._userId = userId;
     this._cardSelector = cardSelector;
   }
 
@@ -16,18 +20,24 @@ export default class Card {
     return cardElement;
   }
 
-  _handleLikeCard() {
-    this._likeButtonElement.classList.toggle('card__like-button_active');
-  }
+  // _handleLikeCard() {
+  //   this._likeButtonElement.classList.toggle('card__like-button_active');
+  // }
 
-  _handleDeleteCard() {
+  deleteCardElement() {
     this._deleteButtonElement.closest('.card').remove();
     this._element = null;
   }
 
+  _cardIsMine() {
+    return this._userId === this._ownerId;
+  }
+
   _setEventListeners() {
-    this._likeButtonElement.addEventListener('click', () => this._handleLikeCard());
-    this._deleteButtonElement.addEventListener('click', () => this._handleDeleteCard());
+    // this._likeButtonElement.addEventListener('click', () => this._handleLikeCard());
+    this._cardIsMine()
+    ? this._deleteButtonElement.addEventListener('click', this._handleDeleteButton)
+    : this._deleteButtonElement.remove();
     this._imageElement.addEventListener('click', this._handleCardClick);
   }
 

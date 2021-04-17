@@ -17,6 +17,7 @@ export const cardSelector = '.card-template';
 export const popupWithImageSelector = '.popup-full-image';
 export const profileEditPopupSelector = '.popup-profile-edit';
 export const cardAddPopupSelector = '.popup-card-add';
+export const popupCardDeleteSelector = '.popup-card-delete';
 
 export const nameInput = document.querySelector('.popup__input_edit_name');
 export const aboutInput = document.querySelector('.popup__input_edit_about');
