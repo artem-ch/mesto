@@ -28,8 +28,6 @@ import {
   cardAddButton
 } from '../utils/constants.js';
 
-let userId;
-
 const userInfo = new UserInfo({ profileNameSelector, profileAboutSelector, profileAvatarSelector });
 
 const profileEditValidator = new FormValidator(settings, profileEditPopupSelector);
@@ -80,7 +78,7 @@ const createCard = (cardData) => {
       }
     },
     cardData,
-    userId,
+    userInfo.userId,
     cardSelector);
 
     return card.generateCard();
@@ -105,8 +103,8 @@ Promise.all([
 ])
 .then(values => {
   const [userData, cards] = values;
-  userId = userData._id;
 
+  userInfo.userId = userData._id;
   userInfo.setUserInfo(userData);
   userInfo.setUserAvatar(userData);
 
