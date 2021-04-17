@@ -62,8 +62,27 @@ export default class Api {
     return fetch(`${this._address}/${this._cohortId}/cards/${cardId}`, {
       method: 'DELETE',
       headers: {
-        authorization: this._token,
-        'Content-Type': 'application/json'
+        authorization: this._token
+      }
+    })
+      .then(this._handleResponse);
+  }
+
+  addLikeCard(cardId) {
+    return fetch(`${this._address}/${this._cohortId}/cards/likes/${cardId}`, {
+      method: 'PUT',
+      headers: {
+        authorization: this._token
+      }
+    })
+      .then(this._handleResponse);
+  }
+
+  removeLikeCard(cardId) {
+    return fetch(`${this._address}/${this._cohortId}/cards/likes/${cardId}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: this._token
       }
     })
       .then(this._handleResponse);

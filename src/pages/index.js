@@ -53,13 +53,25 @@ const createCard = (cardData) => {
     handleDeleteButton: () => {
       popupCardDelete.card = card;
       popupCardDelete.open(cardData);
-    }
-  },
-  cardData,
-  userId,
-  cardSelector);
-  return card.generateCard();
-};
+    },
+    handleLikeCard: (evt) => {
+      evt.target.classList.contains('card__like-button_active')
+      ? api.removeLikeCard(cardData._id).then(cardData => {
+          card.toggleLikeClass();
+          card.updateLikesCounter(cardData.likes.length);
+        })
+      : api.addLikeCard(cardData._id).then(cardData => {
+          card.toggleLikeClass();
+          card.updateLikesCounter(cardData.likes.length);
+        });
+      }
+    },
+    cardData,
+    userId,
+    cardSelector);
+
+    return card.generateCard();
+  };
 
 const cardList = new Section({
   renderer: (cardData) => {
