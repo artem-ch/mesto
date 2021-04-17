@@ -18,17 +18,24 @@ import {
   containerSelector,
   settings,
   profileEditPopupSelector,
+  avatarEditPopupSelector,
   cardAddPopupSelector,
   popupCardDeleteSelector,
   nameInput,
   aboutInput,
   profileEditButton,
+  avatarEditButton,
   cardAddButton
 } from '../utils/constants.js';
 
 let userId;
 
 const userInfo = new UserInfo({ profileNameSelector, profileAboutSelector, profileAvatarSelector });
+
+const profileEditValidator = new FormValidator(settings, profileEditPopupSelector);
+const cardAddValidator = new FormValidator(settings, cardAddPopupSelector);
+const avatarEditValidator = new FormValidator(settings, avatarEditPopupSelector);
+
 const popupWithImage = new PopupWithImage(popupWithImageSelector);
 const popupCardDelete = new PopupWithSubmit({
   submitter: (cardId) => {
@@ -42,8 +49,6 @@ const popupCardDelete = new PopupWithSubmit({
       });
     }
 }, popupCardDeleteSelector);
-const profileEditValidator = new FormValidator(settings, profileEditPopupSelector);
-const cardAddValidator = new FormValidator(settings, cardAddPopupSelector);
 
 const createCard = (cardData) => {
   const card = new Card({
@@ -56,14 +61,22 @@ const createCard = (cardData) => {
     },
     handleLikeCard: (evt) => {
       evt.target.classList.contains('card__like-button_active')
-      ? api.removeLikeCard(cardData._id).then(cardData => {
-          card.toggleLikeClass();
-          card.updateLikesCounter(cardData.likes.length);
-        })
-      : api.addLikeCard(cardData._id).then(cardData => {
-          card.toggleLikeClass();
-          card.updateLikesCounter(cardData.likes.length);
-        });
+      ? api.removeLikeCard(cardData._id)
+          .then(cardData => {
+            card.toggleLikeClass();
+            card.updateLikesCounter(cardData.likes.length);
+          })
+          .catch(err => {
+            console.log('Ошибка при отмене лайка', err);
+          })
+      : api.addLikeCard(cardData._id)
+          .then(cardData => {
+            card.toggleLikeClass();
+            card.updateLikesCounter(cardData.likes.length);
+          })
+          .catch(err => {
+            console.log('Ошибка во время лайка', err);
+          });
       }
     },
     cardData,
@@ -130,6 +143,24 @@ profileEditButton.addEventListener('click', () => {
     });
 });
 
+const avatarEditPopup = new PopupWithForm({
+  submitter: (inputValues) => {
+    api.editAvatar(inputValues)
+      .then(userData => {
+        userInfo.setUserAvatar(userData);
+        avatarEditPopup.close();
+      })
+      .catch(err => {
+        console.log('Ошибка при смене аватара', err)
+      });
+  }
+}, avatarEditPopupSelector);
+
+avatarEditButton.addEventListener('click', () => {
+  avatarEditValidator.resetErrors();
+  avatarEditPopup.open();
+});
+
 const cardAddPopup = new PopupWithForm({
   submitter: (inputValues) => {
     api.addCard(inputValues)
@@ -147,4 +178,5 @@ cardAddButton.addEventListener('click', () => {
 });
 
 profileEditValidator.enableValidation();
+avatarEditValidator.enableValidation();
 cardAddValidator.enableValidation();
