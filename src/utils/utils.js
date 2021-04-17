@@ -7,14 +7,14 @@ import {
 
 const popupWithImage = new PopupWithImage(popupWithImageSelector);
 
-export const createCard = ({ name, link }) => {
+export const createCard = (cardData) => {
   const card = new Card({
-    name,
-    link,
     handleCardClick: () => {
-      popupWithImage.open(name, link);
+      popupWithImage.open(cardData);
     }
-  }, cardSelector);
+  },
+  cardData,
+  cardSelector);
   const cardElement = card.generateCard();
   return cardElement;
 };

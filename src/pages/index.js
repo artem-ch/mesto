@@ -10,8 +10,8 @@ import {
   profileNameSelector,
   profileAboutSelector,
   profileAvatarSelector,
-  settings,
   containerSelector,
+  settings,
   editPopupSelector,
   addPopupSelector,
   nameInput,
@@ -23,6 +23,13 @@ import {
 import { createCard } from '../utils/utils.js';
 
 const userInfo = new UserInfo({ profileNameSelector, profileAboutSelector, profileAvatarSelector });
+const cardList = new Section({
+  renderer: (cardData) => {
+    const cardElement = createCard(cardData);
+    cardList.addItem(cardElement);
+  }
+}, containerSelector);
+
 // const editValidator = new FormValidator(settings, editPopupSelector);
 // const addValidator = new FormValidator(settings, addPopupSelector);
 
@@ -34,7 +41,6 @@ const api = new Api({
 
 api.getProfileInfo()
   .then(userData => {
-    console.log(userData);
     userInfo.setUserInfo(userData);
     userInfo.setUserAvatar(userData);
   })
@@ -42,13 +48,15 @@ api.getProfileInfo()
     console.log('Ошибка при получении данных пользователя.', err);
   });
 
-// const cardList = new Section({
-//   items: initialCards,
-//   renderer: (item) => {
-//     const cardElement = createCard(item);
-//     cardList.addItem(cardElement);
-//   }
-// }, containerSelector);
+api.getCards()
+  .then(cards => {
+    cardList.renderItems(cards);
+  })
+  .catch(err => {
+    console.log('Ошибка при получении карточек.', err);
+  });
+
+
 
 // const editPopup = new PopupWithForm({
 //   submitter: ({ name, about }) => {

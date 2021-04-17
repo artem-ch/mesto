@@ -18,4 +18,13 @@ export default class Api {
     })
       .then(this._handleResponse);
   }
+
+  getCards() {
+    return fetch(`${this._address}/${this._cohortId}/cards`, {
+      headers: {
+        authorization: this._token
+      }
+    })
+      .then(this._handleResponse);
+  }
 }
