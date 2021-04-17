@@ -4,13 +4,15 @@
 .header{display:flex;border-bottom:1px solid rgba(84,84,84,.7);padding:45px 0 41px}@media (max-width:935px){.header{padding:45px 27px 41px}}@media (max-width:425px){.header{padding:28px 27px 31.6px}}
 .header__logo{width:142px;height:33px;background:url(bbe2a6eafac19c3d031c.svg) 50%/contain no-repeat}@media (max-width:425px){.header__logo{width:103.74px;height:24.4px}}
 .profile{display:flex;align-items:center;padding:40px 0 50px}@media (max-width:935px){.profile{padding:40px 19px 50px}}@media (max-width:580px){.profile{flex-direction:column;justify-content:center}}@media (max-width:425px){.profile{padding:42px 19px 36px}}
-.profile__avatar{width:120px;height:120px;border-radius:50%;-o-object-fit:cover;object-fit:cover;margin:0 30px 0 0}@media (max-width:580px){.profile__avatar{margin:0 0 22.5px}}
+.profile__avatar-container{position:relative;margin:0 30px 0 0}@media (max-width:580px){.profile__avatar-container{margin:0 0 22.5px}}
+.profile__avatar{width:120px;height:120px;border-radius:50%;-o-object-fit:cover;object-fit:cover}
+.profile__avatar-edit-button{position:absolute;top:0;left:0;width:100%;height:100%;border:none;background:none;padding:0;background:rgba(0,0,0,.8) url(6c7bf05444b9793fdf6e.svg) 50%/26px no-repeat;opacity:0;transition:opacity .2s linear}.profile__avatar-edit-button:hover{cursor:pointer;opacity:1}
 .profile__info{display:flex;align-items:baseline;max-width:calc(100% - 230px);margin:0 30px 0 0}@media (max-width:580px){.profile__info{max-width:100%;margin:0 0 36px}}
 .profile__name-about{min-width:0;margin:0 18px 0 0}@media (max-width:580px){.profile__name-about{text-align:center}}@media (max-width:425px){.profile__name-about{margin:0 10px 0 0}}
 .profile__name{font-size:42px;font-weight:500;line-height:1.2;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;margin:0 0 16px}@media (max-width:425px){.profile__name{font-size:27px;margin:0 0 14px}}
 .profile__about{font-size:18px;font-weight:400;line-height:1.2;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;margin:0}@media (max-width:425px){.profile__about{font-size:14px}}
-.profile__edit-button{width:24px;height:24px;padding:0;flex-shrink:0;background:url(6c7bf05444b9793fdf6e.svg) 50% no-repeat;border:1px solid #fff;transition:opacity .2s linear}.profile__edit-button:hover{cursor:pointer;opacity:.6}@media (max-width:425px){.profile__edit-button{width:18px;height:18px;background:url(6c7bf05444b9793fdf6e.svg) 50%/7.5px no-repeat}}
-.profile__add-button{width:150px;min-width:50px;height:50px;background:url(59ace4d2bcf396bf9440.svg) 50%/22px no-repeat;border:2px solid #fff;border-radius:2px;padding:0;margin:0 0 0 auto;transition:opacity .2s linear}.profile__add-button:hover{cursor:pointer;opacity:.6}@media (max-width:580px){.profile__add-button{width:100%;margin:0}}@media (max-width:425px){.profile__add-button{background:url(59ace4d2bcf396bf9440.svg) 50%/16px no-repeat}}
+.profile__profile-edit-button{width:24px;height:24px;padding:0;flex-shrink:0;background:url(6c7bf05444b9793fdf6e.svg) 50% no-repeat;border:1px solid #fff;transition:opacity .2s linear}.profile__profile-edit-button:hover{cursor:pointer;opacity:.6}@media (max-width:425px){.profile__profile-edit-button{width:18px;height:18px;background:url(6c7bf05444b9793fdf6e.svg) 50%/7.5px no-repeat}}
+.profile__card-add-button{width:150px;min-width:50px;height:50px;background:url(59ace4d2bcf396bf9440.svg) 50%/22px no-repeat;border:2px solid #fff;border-radius:2px;padding:0;margin:0 0 0 auto;transition:opacity .2s linear}.profile__card-add-button:hover{cursor:pointer;opacity:.6}@media (max-width:580px){.profile__card-add-button{width:100%;margin:0}}@media (max-width:425px){.profile__card-add-button{background:url(59ace4d2bcf396bf9440.svg) 50%/16px no-repeat}}
 @media (max-width:935px){.cards{padding:0 19px}}
 .cards__list{display:grid;justify-content:center;gap:20px 17px;grid-template-columns:repeat(auto-fit,282px);list-style-type:none;margin:0;padding:0}
 .card{position:relative}
@@ -19,7 +21,9 @@
 .card__image{height:282px;-o-object-fit:cover;object-fit:cover}.card__image:hover{cursor:pointer}
 .card__caption{display:flex;justify-content:space-between;align-items:center;background:#fff;padding:21px 20px}
 .card__title{max-width:85%;margin:0;color:#000;font-size:24px;font-weight:900;line-height:1.2;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
-.card__like-button{width:22px;height:19px;background:url(1ad06e85f169668a1f36.svg) 50%/contain no-repeat;border:none;padding:0;transition:opacity .2s linear}.card__like-button:hover{cursor:pointer;opacity:.5}.card__like-button:active{background:url(35948469632d0421d697.svg) 50%/contain no-repeat}
+.card__like{display:flex;flex-direction:column;align-items:center}
+.card__like-counter{color:#000;font-size:13px;font-weight:400;line-height:1.2}
+.card__like-button{width:22px;height:19px;background:url(1ad06e85f169668a1f36.svg) 50%/contain no-repeat;border:none;padding:0;margin:0 0 2.5px;transition:opacity .2s linear}.card__like-button:hover{cursor:pointer;opacity:.5}.card__like-button:active{background:url(35948469632d0421d697.svg) 50%/contain no-repeat}
 .card__like-button_active{background-image:url(35948469632d0421d697.svg)}
 .footer{padding:66px 0 60px}@media (max-width:935px){.footer{padding:66px 19px 60px}}@media (max-width:425px){.footer{padding:48px 19px 36px}}
 .footer__copyright{color:#545454;font-size:18px;font-weight:400;line-height:1.2;margin:0}@media (max-width:425px){.footer__copyright{font-size:14px}}
