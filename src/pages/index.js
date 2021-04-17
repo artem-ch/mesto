@@ -118,6 +118,7 @@ Promise.all([
 
 const profileEditPopup = new PopupWithForm({
   submitter: (inputValues) => {
+    profileEditPopup.renderLoading(true);
     api.editProfileInfo(inputValues)
       .then(userData => {
         userInfo.setUserInfo(userData);
@@ -125,6 +126,9 @@ const profileEditPopup = new PopupWithForm({
       })
       .catch(err => {
         console.log('Ошибка при изменении данных пользователя', err);
+      })
+      .finally(() => {
+        profileEditPopup.renderLoading(false);
       });
   }
 }, profileEditPopupSelector);
@@ -145,6 +149,7 @@ profileEditButton.addEventListener('click', () => {
 
 const avatarEditPopup = new PopupWithForm({
   submitter: (inputValues) => {
+    avatarEditPopup.renderLoading(true);
     api.editAvatar(inputValues)
       .then(userData => {
         userInfo.setUserAvatar(userData);
@@ -152,6 +157,9 @@ const avatarEditPopup = new PopupWithForm({
       })
       .catch(err => {
         console.log('Ошибка при смене аватара', err)
+      })
+      .finally(() => {
+        avatarEditPopup.renderLoading(false);
       });
   }
 }, avatarEditPopupSelector);
@@ -163,11 +171,18 @@ avatarEditButton.addEventListener('click', () => {
 
 const cardAddPopup = new PopupWithForm({
   submitter: (inputValues) => {
+    cardAddPopup.renderLoading(true);
     api.addCard(inputValues)
       .then(cardData => {
         const cardElement = createCard(cardData);
         cardList.prependItem(cardElement);
         cardAddPopup.close();
+      })
+      .catch(err => {
+        console.log('Ошибка при добавлении карточки', err);
+      })
+      .finally(() => {
+        cardAddPopup.renderLoading(false);
       });
   }
 }, cardAddPopupSelector);
