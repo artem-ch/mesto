@@ -18,4 +18,4 @@
 4. Валидации форм
 
 ## Проект на GitHub Pages:
-https://art-wd.github.io/mesto/
+https://artem-ch.github.io/mesto/
